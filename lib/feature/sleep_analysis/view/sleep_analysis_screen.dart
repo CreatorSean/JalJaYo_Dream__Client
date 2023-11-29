@@ -128,6 +128,7 @@ Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -156,7 +157,6 @@ Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
                 ),
               ],
             ),
-            Gaps.h44,
             CircleAvatar(
               radius: 35,
               backgroundColor: const Color(0xff0D9512),

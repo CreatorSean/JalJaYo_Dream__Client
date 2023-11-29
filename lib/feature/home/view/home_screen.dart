@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:jaljayo/common/main_app_bar.dart';
 import 'package:jaljayo/common/main_navigator_screen.dart';
+import 'package:jaljayo/feature/myPage/view/myPage_screen.dart';
 import 'package:jaljayo/feature/sensors/views/sensor_screen.dart';
 import 'package:jaljayo/feature/sleep_analysis/view/sleep_analysis_screen.dart';
 import 'package:jaljayo/feature/today_sleep/view/today_sleep_screen.dart';
@@ -46,14 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: MainAppBar(
         title: getTitle(_currentPage),
       ),
-      backgroundColor: const Color(0xFFd3d3d3),
+      backgroundColor: const Color(0xFF2B303A),
       body: PageView(
         controller: _pageController,
         onPageChanged: changePage,
         children: const [
           TodaySleepScreen(),
           SleepAnalysisScreen(),
-          SensorScreen(),
+          MyPageScreen(),
         ],
       ),
       bottomNavigationBar: MainNavigator(
