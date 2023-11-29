@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:jaljayo/constants/sizes.dart';
 import 'package:jaljayo/feature/home/view/home_screen.dart';
 
@@ -93,7 +92,7 @@ class _TutorialScreenState extends State<TutorialScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2B303A),
+      backgroundColor: const Color(0xff2B303A),
       appBar: null,
       body: Column(
         children: [
@@ -102,7 +101,7 @@ class _TutorialScreenState extends State<TutorialScreen>
             child: TabPageSelector(
               controller: _tabController,
               indicatorSize: Sizes.size16,
-              color: Color(0xffF4EEE0),
+              color: const Color(0xffF4EEE0),
               selectedColor: const Color(0xFF6B728E),
             ),
           ),
@@ -127,19 +126,19 @@ class _TutorialScreenState extends State<TutorialScreen>
           Padding(
             padding: const EdgeInsets.only(bottom: 30),
             child: AnimatedPositioned(
-              duration: Duration(seconds: 5),
+              duration: const Duration(seconds: 5),
               bottom: buttonBottomPosition(),
               left: 0,
               right: 0,
               child: AnimatedOpacity(
                 opacity: buttonOpacity(),
-                duration: Duration(milliseconds: 500),
+                duration: const Duration(milliseconds: 500),
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 30),
                   child: ElevatedButton(
                     onPressed: goToNextPage,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0x6B728E),
+                      backgroundColor: const Color(0x006b728e),
                       minimumSize: const Size(350, 60),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -186,7 +185,7 @@ class TutorialPage extends StatelessWidget {
       children: [
         Column(
           children: [
-            SizedBox(height: Sizes.size2),
+            const SizedBox(height: Sizes.size2),
             Padding(
               padding: const EdgeInsets.only(
                 bottom: Sizes.size2,
@@ -205,7 +204,7 @@ class TutorialPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: screenWidth * 0.06,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff6B728E),
+                        color: const Color(0xff6B728E),
                       ),
                       textAlign: TextAlign.center,
                     ),
