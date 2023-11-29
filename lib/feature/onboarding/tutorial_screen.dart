@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:jaljayo/constants/sizes.dart';
 import 'package:jaljayo/feature/home/view/home_screen.dart';
 
 class TutorialScreen extends StatefulWidget {
-  static String routeURL = '/';
+  static String routeURL = '/tutorial';
   static String routeName = 'tutorial';
   const TutorialScreen({Key? key}) : super(key: key);
 
@@ -16,21 +17,6 @@ class _TutorialScreenState extends State<TutorialScreen>
   late TabController _tabController;
   late PageController _pageController;
   int currentPage = 0;
-  double buttonBottomPosition() {
-    if (currentPage < 2) {
-      return 30;
-    } else {
-      return 100;
-    }
-  }
-
-  double buttonOpacity() {
-    if (currentPage < 2) {
-      return 0.0;
-    } else {
-      return 1.0;
-    }
-  }
 
   @override
   void initState() {
@@ -81,8 +67,7 @@ class _TutorialScreenState extends State<TutorialScreen>
   }
 
   void skipToHomeScreen() {
-    Navigator.pushReplacement(
-      context,
+    Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const HomeScreen(),
       ),
@@ -97,7 +82,19 @@ class _TutorialScreenState extends State<TutorialScreen>
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 40),
+            padding: EdgeInsets.only(top: 30, left: 300),
+            child: TextButton(
+              onPressed: skipToHomeScreen,
+              child: Text(
+                '건너뛰기',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
             child: TabPageSelector(
               controller: _tabController,
               indicatorSize: Sizes.size16,
@@ -123,32 +120,23 @@ class _TutorialScreenState extends State<TutorialScreen>
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 30),
-            child: AnimatedPositioned(
-              duration: const Duration(seconds: 5),
-              bottom: buttonBottomPosition(),
-              left: 0,
-              right: 0,
-              child: AnimatedOpacity(
-                opacity: buttonOpacity(),
-                duration: const Duration(milliseconds: 500),
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: ElevatedButton(
-                    onPressed: goToNextPage,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0x006b728e),
-                      minimumSize: const Size(350, 60),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
-                    child: Text(
-                      currentPage < 2 ? '다음' : '시작하기',
-                      style: const TextStyle(fontSize: 16),
-                    ),
+          AnimatedOpacity(
+            opacity: currentPage < 2 ? 0.0 : 1.0,
+            duration: const Duration(milliseconds: 500),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: ElevatedButton(
+                onPressed: goToNextPage,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0x6B728E),
+                  minimumSize: const Size(350, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
                   ),
+                ),
+                child: Text(
+                  '시작하기',
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
             ),
@@ -196,9 +184,7 @@ class TutorialPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                        // horizontal: screenWidth * 0.1,
-                        top: screenHeight * 0.1),
+                    padding: EdgeInsets.only(top: screenHeight * 0.1),
                     child: Text(
                       getPageText(index),
                       style: TextStyle(
@@ -216,14 +202,14 @@ class TutorialPage extends StatelessWidget {
           ],
         ),
         Positioned(
-          top: screenHeight * 0.4, // 원하는 위치로 수정
-          left: screenWidth * 0.3, // 원하는 위치로 수정
+          top: screenHeight * 0.4,
+          left: screenWidth * 0.25,
           child: Container(
-            width: screenWidth * 0.45, // 원하는 가로 크기로 수정
-            height: screenHeight * 0.3, // 원하는 세로 크기로 수정
+            width: screenWidth * 0.45,
+            height: screenHeight * 0.3,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(getImagePath(index)),
+                image: AssetImage(getImagePath(index) ?? ""),
                 fit: BoxFit.cover,
               ),
             ),
@@ -247,14 +233,15 @@ class TutorialPage extends StatelessWidget {
     }
   }
 
-  String getImagePath(int index) {
+  String? getImagePath(int index) {
     switch (index) {
       case 0:
         return "assets/images/1.png";
       case 1:
         return "assets/images/2.png";
       case 2:
-        return "assets/images/app_icon.png";
+        return "assets/images/3.png";
+
       default:
         return "";
     }

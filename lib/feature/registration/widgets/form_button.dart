@@ -20,9 +20,7 @@ class FormButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Sizes.size5),
-          color: isDisabled
-              ? Colors.grey.shade300
-              : Theme.of(context).primaryColor,
+          color: isDisabled ? Colors.grey.shade300 : const Color(0xff171A21),
         ),
         duration: const Duration(
           milliseconds: 300,
@@ -35,9 +33,14 @@ class FormButton extends StatelessWidget {
           duration: const Duration(
             milliseconds: 300,
           ),
-          child: const Text(
+          child: Text(
             '다음',
             textAlign: TextAlign.center,
+            style: TextStyle(
+              color: isDisabled
+                  ? const Color(0xff171a21)
+                  : const Color(0xfff4eee0),
+            ),
           ),
         ),
       ),

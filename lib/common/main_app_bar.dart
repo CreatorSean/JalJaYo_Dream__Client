@@ -41,6 +41,7 @@ class _MainAppBarState extends ConsumerState<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       iconTheme: const IconThemeData(
         color: Color(0xffF4EEE0),
       ),

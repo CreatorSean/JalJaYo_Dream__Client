@@ -25,12 +25,18 @@ class _BirthdayTextFieldState extends State<BirthdayTextField> {
       width: widget.boxWidth,
       height: 50,
       child: TextField(
+        style: const TextStyle(
+          color: Color(0xfff4eee0),
+        ),
         maxLength: widget.maxLength,
         keyboardType: TextInputType.number,
         controller: widget.birthdayController,
         decoration: InputDecoration(
           counterText: '',
           hintText: widget.birthHintText,
+          hintStyle: const TextStyle(
+            color: Color(0xfff4eee0),
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0), // 모서리 둥글게 설정
             borderSide: BorderSide(

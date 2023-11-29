@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jaljayo/constants/gaps.dart';
 import 'package:jaljayo/constants/sizes.dart';
 import 'package:jaljayo/feature/sleep_analysis/model/sleep_data_model.dart';
@@ -98,6 +99,7 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
 Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
   int score = 75;
   return Container(
+    width: MediaQuery.of(context).size.width,
     padding: const EdgeInsets.symmetric(
       horizontal: 8.0,
       vertical: 12.0,
@@ -118,6 +120,14 @@ Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
       onTap: () {
         SleepDialogWidget().sleepDialog(context, sleep);
       },
+      trailing: IconButton(
+        onPressed: () {
+          print("RaisedButton 클릭됨");
+        },
+        icon: const FaIcon(
+          FontAwesomeIcons.trash,
+        ),
+      ),
       title: Text(
         "< ${sleep.sleepDate} >",
         style: const TextStyle(

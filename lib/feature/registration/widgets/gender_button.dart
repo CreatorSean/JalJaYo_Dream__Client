@@ -35,7 +35,9 @@ class _GenderButtonState extends State<GenderButton> {
         ),
         child: AnimatedDefaultTextStyle(
           style: TextStyle(
-            color: widget.isDisabled ? Colors.grey.shade400 : Colors.white,
+            color: widget.isDisabled
+                ? Theme.of(context).primaryColor
+                : const Color(0xfff4eee0),
             fontWeight: FontWeight.w600,
           ),
           duration: const Duration(
