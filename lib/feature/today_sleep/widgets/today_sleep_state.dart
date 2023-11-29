@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:jaljayo/constants/gaps.dart';
 import 'package:jaljayo/constants/sizes.dart';
@@ -58,6 +59,42 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                       fontSize: Sizes.size20,
                       fontWeight: FontWeight.w600,
                     ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+                width: 50,
+              ),
+              Gaps.h96,
+              const Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.heartPulse,
+                        size: Sizes.size36,
+                        color: Color(0xffE94F4F),
+                      ),
+                      Gaps.h10,
+                      Column(
+                        children: [
+                          Text(
+                            "117",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: Sizes.size14,
+                            ),
+                          ),
+                          Text(
+                            "bpm",
+                            style: TextStyle(
+                              color: Color(0xffA8A4A4),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
