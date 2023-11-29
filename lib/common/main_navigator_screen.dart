@@ -39,8 +39,8 @@ class _MainNavigatorState extends State<MainNavigator> {
             onTap: () => widget.changeFunc(1),
           ),
           NavigationTab(
-            name: 'sensors',
-            icon: FontAwesomeIcons.signal,
+            name: 'My Page',
+            icon: FontAwesomeIcons.solidUser,
             page: widget.page,
             selected: widget.page == 2,
             onTap: () => widget.changeFunc(2),

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:jaljayo/constants/sizes.dart';
 import 'package:jaljayo/feature/home/view/home_screen.dart';
 
 class TutorialScreen extends StatefulWidget {
-  static String routeURL = '/';
+  static String routeURL = '/tutorial';
   static String routeName = 'tutorial';
   const TutorialScreen({Key? key}) : super(key: key);
 
@@ -77,7 +76,7 @@ class _TutorialScreenState extends State<TutorialScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2B303A),
+      backgroundColor: const Color(0xff2B303A),
       appBar: null,
       body: Column(
         children: [
@@ -98,7 +97,7 @@ class _TutorialScreenState extends State<TutorialScreen>
             child: TabPageSelector(
               controller: _tabController,
               indicatorSize: Sizes.size16,
-              color: Color(0xffF4EEE0),
+              color: const Color(0xffF4EEE0),
               selectedColor: const Color(0xFF6B728E),
             ),
           ),
@@ -173,7 +172,7 @@ class TutorialPage extends StatelessWidget {
       children: [
         Column(
           children: [
-            SizedBox(height: Sizes.size2),
+            const SizedBox(height: Sizes.size2),
             Padding(
               padding: const EdgeInsets.only(
                 bottom: Sizes.size2,
@@ -190,7 +189,7 @@ class TutorialPage extends StatelessWidget {
                       style: TextStyle(
                         fontSize: screenWidth * 0.06,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xff6B728E),
+                        color: const Color(0xff6B728E),
                       ),
                       textAlign: TextAlign.center,
                     ),

@@ -7,8 +7,8 @@ import 'package:jaljayo/feature/registration/view_model/registration_view_model.
 import 'package:jaljayo/feature/registration/widgets/form_button.dart';
 
 class NameScreen extends ConsumerStatefulWidget {
-  static String routeURL = '/username';
-  static String routeName = 'username';
+  static String routeURL = '/';
+  static String routeName = 'name';
   const NameScreen({super.key});
 
   @override
@@ -45,65 +45,77 @@ class _NameScreenState extends ConsumerState<NameScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: null,
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Gaps.v60,
-            Row(
-              children: [
-                Text(
-                  "이름을 알려주세요 :)",
-                  style: TextStyle(
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xff2B303A),
+        appBar: null,
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Gaps.v60,
+              const Row(
+                children: [
+                  Text(
+                    "이름을 알려주세요 :)",
+                    style: TextStyle(
+                        color: Color(0xfff4eee0),
+                        fontWeight: FontWeight.w600,
+                        fontSize: Sizes.size24),
+                  ),
+                ],
+              ),
+              Gaps.v5,
+              const Row(
+                children: [
+                  Text(
+                    "처음에 시작시에 필요합니다",
+                    style: TextStyle(
+                      color: Color(0xfff4eee0),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              Gaps.v36,
+              TextField(
+                controller: _usernameController,
+                style: const TextStyle(
+                  color: Color(0xfff4eee0),
+                ),
+                decoration: InputDecoration(
+                  hintStyle: const TextStyle(
+                    color: Color(0xfff4eee0),
+                  ),
+                  hintText: 'JalJaYo',
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.grey.shade400,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
                       color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: Sizes.size24),
-                ),
-              ],
-            ),
-            Gaps.v5,
-            Row(
-              children: [
-                Text(
-                  "처음에 시작시에 필요합니다",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
-              ],
-            ),
-            Gaps.v36,
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                hintText: 'JalJaYo',
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.grey.shade400,
-                  ),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
-                  ),
+                cursorColor: const Color(0xfff4eee0),
+              ),
+              Gaps.v36,
+              GestureDetector(
+                onTap: _onNextTap,
+                child: FormButton(
+                  isDisabled: _username.isEmpty,
                 ),
               ),
-              cursorColor: Theme.of(context).primaryColor,
-            ),
-            Gaps.v36,
-            GestureDetector(
-              onTap: _onNextTap,
-              child: FormButton(
-                isDisabled: _username.isEmpty,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
+        bottomNavigationBar: null,
       ),
-      bottomNavigationBar: null,
     );
   }
 }

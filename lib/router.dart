@@ -16,9 +16,7 @@ final routerProvier = Provider(
         GoRoute(
           path: TutorialScreen.routeURL,
           name: TutorialScreen.routeName,
-          pageBuilder: (context, state) => const MaterialPage(
-            child: TutorialScreen(),
-          ),
+          builder: (context, state) => const TutorialScreen(),
         ),
         GoRoute(
           path: HomeScreen.routeURL,

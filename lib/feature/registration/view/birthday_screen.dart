@@ -70,77 +70,83 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: null,
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            Gaps.v60,
-            Row(
-              children: [
-                Text(
-                  "안녕하세요 ${widget.username}님,",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: Sizes.size16,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xff2b303a),
+        appBar: null,
+        body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Gaps.v60,
+              Row(
+                children: [
+                  Text(
+                    "안녕하세요 ${widget.username}님,",
+                    style: const TextStyle(
+                      color: Color(0xfff4eee0),
+                      fontWeight: FontWeight.w400,
+                      fontSize: Sizes.size16,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Gaps.v5,
-            Row(
-              children: [
-                Text(
-                  "태어난 날을 알려주세요:)",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: Sizes.size24,
-                  ),
-                ),
-              ],
-            ),
-            Gaps.v36,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                BirthdayTextField(
-                  birthdayController: _birthYearController,
-                  birthHintText: "YYYY",
-                  boxWidth: 120,
-                  maxLength: 4,
-                ),
-                Gaps.h6,
-                BirthdayTextField(
-                  birthdayController: _birthMonthController,
-                  birthHintText: "MM",
-                  boxWidth: 70,
-                  maxLength: 2,
-                ),
-                Gaps.h6,
-                BirthdayTextField(
-                  birthdayController: _birthDayController,
-                  birthHintText: "DD",
-                  boxWidth: 70,
-                  maxLength: 2,
-                ),
-              ],
-            ),
-            Gaps.v36,
-            GestureDetector(
-              onTap: _onNextTap,
-              child: FormButton(
-                isDisabled: _birthYear.isEmpty ||
-                    _birthMonth.isEmpty ||
-                    _birthDay.isEmpty,
+                ],
               ),
-            ),
-          ],
+              Gaps.v5,
+              const Row(
+                children: [
+                  Text(
+                    "태어난 날을 알려주세요:)",
+                    style: TextStyle(
+                      color: Color(0xfff4eee0),
+                      fontWeight: FontWeight.w600,
+                      fontSize: Sizes.size24,
+                    ),
+                  ),
+                ],
+              ),
+              Gaps.v36,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BirthdayTextField(
+                    birthdayController: _birthYearController,
+                    birthHintText: "YYYY",
+                    boxWidth: 120,
+                    maxLength: 4,
+                  ),
+                  Gaps.h6,
+                  BirthdayTextField(
+                    birthdayController: _birthMonthController,
+                    birthHintText: "MM",
+                    boxWidth: 70,
+                    maxLength: 2,
+                  ),
+                  Gaps.h6,
+                  BirthdayTextField(
+                    birthdayController: _birthDayController,
+                    birthHintText: "DD",
+                    boxWidth: 70,
+                    maxLength: 2,
+                  ),
+                ],
+              ),
+              Gaps.v36,
+              GestureDetector(
+                onTap: _onNextTap,
+                child: FormButton(
+                  isDisabled: _birthYear.isEmpty ||
+                      _birthMonth.isEmpty ||
+                      _birthDay.isEmpty,
+                ),
+              ),
+            ],
+          ),
         ),
+        bottomNavigationBar: null,
       ),
-      bottomNavigationBar: null,
     );
   }
 }
