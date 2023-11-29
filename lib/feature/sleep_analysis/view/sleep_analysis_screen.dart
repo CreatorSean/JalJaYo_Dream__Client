@@ -23,12 +23,14 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
   bool isClicked = false;
   FlutterBluePlus flutterBlue = FlutterBluePlus.instance;
   List<ScanResult> scanResultList = [];
+  late Future<Map<String, dynamic>> sleepAnalysisData;
 
   @override
   initState() {
     super.initState();
   }
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,22 +47,28 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
                   child: SleepCalendar(),
                 ),
                 Gaps.v16,
-                ListView.separated(
-                  shrinkWrap: true,
-                  primary: false,
-                  itemCount: sleepList.length,
-                  itemBuilder: (context, index) {
-                    return dataItem(
-                      index,
-                      context,
-                      sleepList[index],
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return const Divider(
-                      color: Color(0xff2B303A),
-                    );
-                  },
+                Row(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        primary: false,
+                        itemCount: sleepList.length,
+                        itemBuilder: (context, index) {
+                          return dataItem(
+                            index,
+                            context,
+                            sleepList[index],
+                          );
+                        },
+                        separatorBuilder: (context, index) {
+                          return const Divider(
+                            color: Color(0xff2B303A),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -88,6 +96,7 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
 }
 
 Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
+  int score = 75;
   return Container(
     padding: const EdgeInsets.symmetric(
       horizontal: 8.0,
@@ -118,30 +127,48 @@ Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
       titleAlignment: ListTileTitleAlignment.center,
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Row(
           children: [
-            Row(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  '시작 시간 : ${sleep.startTime}',
-                  style: const TextStyle(
-                    fontSize: Sizes.size16,
-                    color: Color(0xffF4EEE0),
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      '시작 시간 : ${sleep.startTime}',
+                      style: const TextStyle(
+                        fontSize: Sizes.size16,
+                        color: Color(0xffF4EEE0),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      '종료 시간 : ${sleep.endTime}',
+                      style: const TextStyle(
+                        fontSize: Sizes.size16,
+                        color: Color(0xffF4EEE0),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            Row(
-              children: [
-                Text(
-                  '종료 시간 : ${sleep.endTime}',
+            Gaps.h44,
+            CircleAvatar(
+              radius: 35,
+              backgroundColor: const Color(0xff0D9512),
+              child: CircleAvatar(
+                radius: 33,
+                backgroundColor: const Color(0xff4A5365),
+                child: Text(
+                  "수면 점수\n      $score",
                   style: const TextStyle(
-                    fontSize: Sizes.size16,
-                    color: Color(0xffF4EEE0),
-                  ),
+                      fontSize: Sizes.size14, color: Color(0xffF4EEE0)),
                 ),
-              ],
+              ),
             ),
           ],
         ),
