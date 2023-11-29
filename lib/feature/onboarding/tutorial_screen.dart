@@ -3,7 +3,7 @@ import 'package:jaljayo/constants/sizes.dart';
 import 'package:jaljayo/feature/home/view/home_screen.dart';
 
 class TutorialScreen extends StatefulWidget {
-  static String routeURL = '/';
+  static String routeURL = '/tutorial';
   static String routeName = 'tutorial';
   const TutorialScreen({Key? key}) : super(key: key);
 

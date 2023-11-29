@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jaljayo/constants/gaps.dart';
 import 'package:jaljayo/constants/sizes.dart';
-import 'package:jaljayo/feature/home/view/home_screen.dart';
 import 'package:jaljayo/feature/registration/view_model/registration_view_model.dart';
 import 'package:jaljayo/feature/registration/widgets/form_button.dart';
 import 'package:jaljayo/feature/registration/widgets/gender_button.dart';
+
+import '../../onboarding/tutorial_screen.dart';
 
 class GenderScreen extends ConsumerStatefulWidget {
   const GenderScreen({super.key});
@@ -24,12 +25,17 @@ class _GenderScreenState extends ConsumerState<GenderScreen> {
   bool _manSelected = true;
   bool _otherSelected = true;
 
-  void _onNextTap() {
+  void _onNextTap(BuildContext context) {
     if (_gender.isEmpty) return;
     //registrationForm Provider를 사용하여 gender을 생성하면 해당 정보를 저장한다.
     final state = ref.read(registrationForm.notifier).state;
     ref.read(registrationForm.notifier).state = {...state, "gender": _gender};
-    context.goNamed(HomeScreen.routeName);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const TutorialScreen(),
+      ),
+    );
   }
 
   void _onManSelectTap() {
@@ -59,30 +65,31 @@ class _GenderScreenState extends ConsumerState<GenderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff2b303a),
       appBar: null,
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
             Gaps.v60,
-            Row(
+            const Row(
               children: [
                 Text(
                   "성별을 알려주세요 :)",
                   style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                      color: Color(0xfff4eee0),
                       fontWeight: FontWeight.w600,
                       fontSize: Sizes.size24),
                 ),
               ],
             ),
             Gaps.v5,
-            Row(
+            const Row(
               children: [
                 Text(
                   "처음에 시작시에 필요합니다",
                   style: TextStyle(
-                    color: Theme.of(context).primaryColor,
+                    color: Color(0xfff4eee0),
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -121,7 +128,9 @@ class _GenderScreenState extends ConsumerState<GenderScreen> {
                     height: 10,
                   )
                 : GestureDetector(
-                    onTap: _onNextTap,
+                    onTap: () {
+                      _onNextTap(context);
+                    },
                     child: FormButton(
                       isDisabled: _gender.isEmpty,
                     ),
