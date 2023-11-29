@@ -1,9 +1,6 @@
 class SleepModel {
-  int id;
-  String sleepDate;
-  int sleepTime;
-  int hrAvg;
-  int waso;
+  final int id, sleepTime, hrAvg, waso;
+  final String sleepDate;
   SleepModel({
     required this.id,
     required this.sleepDate,
