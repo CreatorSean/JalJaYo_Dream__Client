@@ -27,6 +27,7 @@ class SleepDataViewModel extends AsyncNotifier<List<SleepDataModel>> {
         startTime: item['startTime'],
         endTime: item['endTime'],
         sleepFile: item['sleepFile'],
+        sleepWaso: item['sleepWaso'],
       );
       sleepList.add(sleepData);
     }

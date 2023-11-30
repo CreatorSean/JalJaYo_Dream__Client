@@ -181,7 +181,8 @@
             "sleepDate" : "2023년 10월 06일",
             "startTime" : "2023-10-05 22:58",
             "endTime" : "2023-10-06 07:33",
-            "sleepFile" : "abc.csv"
+            "sleepFile" : "abc.csv",
+            "sleepWaso" : 99
         },
         {
             "modelName" : 8530312,
@@ -204,7 +205,8 @@
             "sleepDate" : "2023년 10월 03일",
             "startTime" : "2023-10-03 01:03",
             "endTime" : "2023-10-03 12:31",
-            "sleepFile" : "abc.csv"
+            "sleepFile" : "abc.csv",
+            "sleepWaso" : 89
         },
         {
             "modelName" : 9106476,

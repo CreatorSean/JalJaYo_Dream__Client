@@ -9,6 +9,8 @@ import 'package:jaljayo/feature/sleep_analysis/model/sleep_data_model.dart';
 import 'package:jaljayo/feature/sleep_analysis/view_model/sleep_data_view_model.dart';
 import 'package:jaljayo/feature/sleep_analysis/widgets/sleep_calendar.dart';
 import 'package:jaljayo/feature/sleep_analysis/widgets/sleep_dialog_widget.dart';
+import 'package:jaljayo/feature/sleep_analysis/widgets/sleep_linechart_widget.dart';
+import 'package:jaljayo/feature/sleep_analysis/widgets/sleep_piechart_widget.dart';
 
 class SleepAnalysisScreen extends ConsumerStatefulWidget {
   static String routeURL = '/sleep';
@@ -81,15 +83,23 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
           );
         },
         error: (error, stackTrace) {
-          return Center(
-            child: Text(
-              error.toString(),
-              style: const TextStyle(
-                fontSize: Sizes.size16,
-                fontWeight: FontWeight.bold,
-              ),
+          return const Padding(
+            padding: EdgeInsets.all(15),
+            child: SizedBox(
+              width: double.infinity,
+              height: 510,
+              child: SleepCalendar(),
             ),
           );
+          // return Center(
+          //   child: Text(
+          //     error.toString(),
+          //     style: const TextStyle(
+          //       fontSize: Sizes.size16,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // );
         },
       ),
     );
@@ -97,7 +107,6 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
 }
 
 Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
-  int score = 75;
   return Container(
     width: MediaQuery.of(context).size.width,
     padding: const EdgeInsets.symmetric(
@@ -106,82 +115,98 @@ Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
     ),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(15),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.2),
-          spreadRadius: 0.5,
-          blurRadius: 7,
-          offset: const Offset(0, 10),
-        ),
-      ],
       color: const Color(0xff3E434D),
     ),
-    child: ListTile(
-      onTap: () {
-        SleepDialogWidget().sleepDialog(context, sleep);
-      },
-      trailing: IconButton(
-        onPressed: () {
-          print("RaisedButton 클릭됨");
-        },
-        icon: const FaIcon(
-          FontAwesomeIcons.trash,
-        ),
-      ),
-      title: Text(
-        "< ${sleep.sleepDate} >",
-        style: const TextStyle(
-          color: Color(0xffF4EEE0),
-        ),
-      ),
-      titleAlignment: ListTileTitleAlignment.center,
-      subtitle: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      '시작 시간 : ${sleep.startTime}',
-                      style: const TextStyle(
-                        fontSize: Sizes.size16,
-                        color: Color(0xffF4EEE0),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '종료 시간 : ${sleep.endTime}',
-                      style: const TextStyle(
-                        fontSize: Sizes.size16,
-                        color: Color(0xffF4EEE0),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            CircleAvatar(
-              radius: 35,
-              backgroundColor: const Color(0xff0D9512),
-              child: CircleAvatar(
-                radius: 33,
-                backgroundColor: const Color(0xff4A5365),
-                child: Text(
-                  "수면 점수\n      $score",
-                  style: const TextStyle(
-                      fontSize: Sizes.size14, color: Color(0xffF4EEE0)),
+    child: Padding(
+      padding: const EdgeInsets.only(right: 12, left: 12),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            children: [
+              Text(
+                '< ${sleep.sleepDate} >',
+                style: const TextStyle(
+                  color: Color(0xfff4eee0),
+                  fontSize: Sizes.size16,
                 ),
               ),
-            ),
-          ],
-        ),
+              Gaps.v16,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Column(
+                    children: [
+                      Text(
+                        "·  시작 시간",
+                        style: TextStyle(
+                          color: Color(0xfff4eee0),
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Gaps.v10,
+                      Text(
+                        "·  종료 시간",
+                        style: TextStyle(
+                          color: Color(0xfff4eee0),
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        sleep.startTime,
+                        style: const TextStyle(
+                          color: Color(0xfff4eee0),
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Gaps.v10,
+                      Text(
+                        sleep.startTime,
+                        style: const TextStyle(
+                          color: Color(0xfff4eee0),
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: CustomPaint(
+                  // CustomPaint를 그리고 이 안에 차트를 그려줍니다..
+                  size:
+                      const Size(80, 80), // CustomPaint의 크기는 가로 세로 80, 80 합니다.
+                  painter: SleepPieChartWidget(
+                    percentage: sleep.sleepWaso,
+                    textScaleFactor: 0.7,
+                    textColor: '0xff0D9512',
+                  ),
+                ),
+              ),
+              const Text(
+                "수면 효율",
+                style: TextStyle(
+                  color: Color(0xfff4eee0),
+                  fontSize: Sizes.size16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     ),
   )

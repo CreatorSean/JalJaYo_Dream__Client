@@ -11,7 +11,7 @@ import 'package:jaljayo/feature/today_sleep/view/today_sleep_screen.dart';
 final routerProvier = Provider(
   (ref) {
     return GoRouter(
-      initialLocation: "/",
+      initialLocation: "/home",
       routes: [
         GoRoute(
           path: TutorialScreen.routeURL,
