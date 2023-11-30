@@ -41,6 +41,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
       child: Column(
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
@@ -62,11 +63,6 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-                width: 50,
-              ),
-              Gaps.h96,
               const Column(
                 children: [
                   Row(
@@ -82,19 +78,25 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                           Text(
                             "117",
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Color(0xfff4eee0),
                               fontSize: Sizes.size14,
                             ),
                           ),
                           Text(
                             "bpm",
                             style: TextStyle(
-                              color: Color(0xffA8A4A4),
+                              color: Color(0xfff4eee0),
                             ),
                           ),
                         ],
                       ),
                     ],
+                  ),
+                  Text(
+                    "수면 중 평균 bpm",
+                    style: TextStyle(
+                      color: Color(0xfff4eee0),
+                    ),
                   ),
                 ],
               ),
