@@ -107,119 +107,125 @@ class _SleepAnalysisScreenState extends ConsumerState<SleepAnalysisScreen> {
 }
 
 Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    padding: const EdgeInsets.symmetric(
-      horizontal: 8.0,
-      vertical: 12.0,
-    ),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(15),
-      color: const Color(0xff3E434D),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.only(right: 12, left: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              Text(
-                '< ${sleep.sleepDate} >',
-                style: const TextStyle(
-                  color: Color(0xfff4eee0),
-                  fontSize: Sizes.size16,
-                ),
-              ),
-              Gaps.v16,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Column(
-                    children: [
-                      Text(
-                        "·  시작 시간",
-                        style: TextStyle(
-                          color: Color(0xfff4eee0),
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Gaps.v10,
-                      Text(
-                        "·  종료 시간",
-                        style: TextStyle(
-                          color: Color(0xfff4eee0),
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        sleep.startTime,
-                        style: const TextStyle(
-                          color: Color(0xfff4eee0),
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Gaps.v10,
-                      Text(
-                        sleep.startTime,
-                        style: const TextStyle(
-                          color: Color(0xfff4eee0),
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              )
-            ],
-          ),
-          Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: CustomPaint(
-                  // CustomPaint를 그리고 이 안에 차트를 그려줍니다..
-                  size:
-                      const Size(80, 80), // CustomPaint의 크기는 가로 세로 80, 80 합니다.
-                  painter: SleepPieChartWidget(
-                    percentage: sleep.sleepWaso,
-                    textScaleFactor: 0.7,
-                    textColor: '0xff0D9512',
-                  ),
-                ),
-              ),
-              const Text(
-                "수면 효율",
-                style: TextStyle(
-                  color: Color(0xfff4eee0),
-                  fontSize: Sizes.size16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          )
-        ],
+  return GestureDetector(
+    onTap: () {
+      SleepDialogWidget().sleepDialog(context, sleep);
+    },
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8.0,
+        vertical: 12.0,
       ),
-    ),
-  )
-      .animate()
-      .then(delay: (idx * 50).ms)
-      .fadeIn(
-        duration: 300.ms,
-        curve: Curves.easeInOut,
-      )
-      .flipV(
-        begin: -0.25,
-        end: 0,
-        duration: 300.ms,
-        curve: Curves.easeInOut,
-      );
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: const Color(0xff3E434D),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 12, left: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                Text(
+                  '< ${sleep.sleepDate} >',
+                  style: const TextStyle(
+                    color: Color(0xfff4eee0),
+                    fontSize: Sizes.size16,
+                  ),
+                ),
+                Gaps.v16,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Column(
+                      children: [
+                        Text(
+                          "·  시작 시간  :",
+                          style: TextStyle(
+                            color: Color(0xfff4eee0),
+                            fontSize: Sizes.size16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Gaps.v10,
+                        Text(
+                          "·  종료 시간  :",
+                          style: TextStyle(
+                            color: Color(0xfff4eee0),
+                            fontSize: Sizes.size16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Gaps.h20,
+                    Column(
+                      children: [
+                        Text(
+                          sleep.startTime,
+                          style: const TextStyle(
+                            color: Color(0xfff4eee0),
+                            fontSize: Sizes.size16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Gaps.v10,
+                        Text(
+                          sleep.startTime,
+                          style: const TextStyle(
+                            color: Color(0xfff4eee0),
+                            fontSize: Sizes.size16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: CustomPaint(
+                    // CustomPaint를 그리고 이 안에 차트를 그려줍니다..
+                    size: const Size(
+                        80, 80), // CustomPaint의 크기는 가로 세로 80, 80 합니다.
+                    painter: SleepPieChartWidget(
+                      percentage: sleep.sleepWaso,
+                      textScaleFactor: 0.7,
+                      textColor: const Color(0xff0A7E0F),
+                    ),
+                  ),
+                ),
+                const Text(
+                  "수면 효율",
+                  style: TextStyle(
+                    color: Color(0xfff4eee0),
+                    fontSize: Sizes.size16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    )
+        .animate()
+        .then(delay: (idx * 50).ms)
+        .fadeIn(
+          duration: 300.ms,
+          curve: Curves.easeInOut,
+        )
+        .flipV(
+          begin: -0.25,
+          end: 0,
+          duration: 300.ms,
+          curve: Curves.easeInOut,
+        ),
+  );
 }

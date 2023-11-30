@@ -117,7 +117,7 @@ class _SleepStateScreenState extends State<SleepStateScreen> {
                                 painter: SleepPieChartWidget(
                                   percentage: sleepSE,
                                   textScaleFactor: 0.7,
-                                  textColor: '0xFFF4EEE0',
+                                  textColor: const Color(0xFFF4EEE0),
                                 ),
                               ),
                             ),
