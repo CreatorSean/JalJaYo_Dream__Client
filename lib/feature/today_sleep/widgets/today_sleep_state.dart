@@ -76,7 +76,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                       Column(
                         children: [
                           Text(
-                            "117",
+                            "64",
                             style: TextStyle(
                               color: Color(0xfff4eee0),
                               fontSize: Sizes.size14,
@@ -121,7 +121,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                     ),
                   ),
                   Text(
-                    "3h",
+                    "4H 3M",
                     style: TextStyle(
                       color: Color(0xffF4EEE0),
                       fontSize: Sizes.size20,
@@ -134,7 +134,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
           ),
           Gaps.v24,
           const Text(
-            '수면 점수 42점',
+            '수면 효율 90점',
             style: TextStyle(
               color: Colors.white,
               fontSize: Sizes.size24,
@@ -142,7 +142,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
             ),
           ),
           const Text(
-            '절대적인 수면량이 너무 부족해요',
+            '오늘도 좋은 밤 되셨군요?',
             style: TextStyle(
               color: Colors.white,
               fontSize: Sizes.size16,
@@ -173,7 +173,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                           ),
                           Gaps.v10,
                           Text(
-                            "1H 7M",
+                            "2H 2M",
                             style: TextStyle(
                               color: Color(0xfff4eee0),
                               fontSize: Sizes.size20,
@@ -194,7 +194,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                       child: Column(
                         children: [
                           CirCleWidget(
-                            mainText: "코어 수면",
+                            mainText: "얕은 수면",
                             mainCircleColor: Color(0xff444C85),
                             mainTextColor: Color(0xffeeeeee),
                             mainCircleSize: Sizes.size36,
@@ -202,7 +202,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                           ),
                           Gaps.v10,
                           Text(
-                            "1H 7M",
+                            "1H 13M",
                             style: TextStyle(
                               color: Color(0xfff4eee0),
                               fontSize: Sizes.size20,
@@ -231,7 +231,7 @@ class _TodaySleepStateState extends ConsumerState<TodaySleepState> {
                           ),
                           Gaps.v10,
                           Text(
-                            "1H 7M",
+                            "48M",
                             style: TextStyle(
                               color: Color(0xfff4eee0),
                               fontSize: Sizes.size20,

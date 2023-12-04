@@ -173,7 +173,7 @@ Widget dataItem(int idx, BuildContext context, SleepDataModel sleep) {
                         ),
                         Gaps.v10,
                         Text(
-                          sleep.startTime,
+                          sleep.endTime,
                           style: const TextStyle(
                             color: Color(0xfff4eee0),
                             fontSize: Sizes.size16,
