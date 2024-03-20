@@ -82,7 +82,7 @@ class SleepDialogWidget {
                   GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
                     child: Container(
-                      height: 40,
+                      height: 39,
                       width: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
